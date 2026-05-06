@@ -6,23 +6,23 @@ tags: [salesforce, lwc, architecture, data-model]
 ---
 *One of the perennial requests that arise in requirements is the ability to "tag" records in Salesforce. The reason for the request may be familiarity ("our previous CRM let us tag records. Why does Salesforce not support that?") or function ("We need a way to tag records in order to...") and it's important to figure out where the client is coming from, as well as the likely development of their requirements in the future.*
 
-There's a free Salesforce Labs app called [Lightning Universal Tagging](https://appexchange.salesforce.com/appxListingDetail?listingId=a0N3A00000FR4OlUAL). If you need tags now and don't expect them to develop into something more, install it and stop reading. If you expect them to grow up — to be reported on, automated against, governed, secured — here's an alternative.
+There's a free Salesforce Labs app called [Lightning Universal Tagging](https://appexchange.salesforce.com/appxListingDetail?listingId=a0N3A00000FR4OlUAL). If you need tags now and don't expect them to develop into something more, install it and stop reading. If you expect them to grow up; to be more like tags in something like GoHighLevel, to be reported on, automated against, governed, secured... here's an alternative.
 
 <!-- SCREENSHOT: side-by-side of LUT tags on an Account vs. SmartTags on an Account, showing the visual difference — coloured pills with descriptions vs. plain text -->
 
 ## Why I built one anyway
 
-Tagging requests come up a lot. For years I pushed back, because what users mean by "we need tags" is usually one of three things that Salesforce already does well: picklists, campaigns, or topics. But every so often the requirement is genuinely tag-shaped — flexible, user-curated, cross-object, low-ceremony — and none of those quite fit.
+Tagging requests come up a lot. For years I pushed back, because what users mean by "we need tags" is usually one of three things that Salesforce already does well: picklists, campaigns, or topics. But every so often the requirement is genuinely tag-shaped: flexible, user-curated, cross-object, low-ceremony, and none of those quite fit.
 
-Lightning Universal Tagging is a perfectly reasonable solution to that genuine requirement, and it has a real advantage I want to acknowledge first: zero schema work to extend. Drop the component on any object's page, done. That's a meaningful benefit if your need is "let users tag anything they encounter."
+Lightning Universal Tagging is a perfectly reasonable solution to that genuine requirement, and it has a real advantage I want to acknowledge first: **zero schema work to extend.** Drop the component on any object's page, done. That's a meaningful benefit if your need is "let users tag anything they encounter."
 
-What I kept running into, though, was the next set of questions. *Can we report on all Accounts tagged VIP? Can we trigger a flow when a Contact gets tagged? Can we restrict who sees which tags? Can we count how many records carry each tag?* Each of these is possible on top of LUT's architecture, but each requires work, sometimes quite substantial work, because the underlying data model has to fake polymorphism that Salesforce doesn't support natively for custom lookups.
+What I kept running into, though, was the next set of questions. *Can we report on all Accounts tagged VIP? Can we trigger a flow when a Contact gets tagged? Can we restrict who sees which tags? Can we count how many records carry each tag?Can I use tags to build an audience?* Each of these is *possible* on top of LUT's architecture, but each requires work, sometimes quite substantial, because the underlying data model has to fake polymorphism that Salesforce doesn't support natively for custom lookups.
 
 So I built SmartTags around a different trade-off.
 
 ## The architectural choice
 
-SmartTags uses one junction object per taggable object — `Account_Tag__c`, `Contact_Tag__c`, `Project_Tag__c` — each with a real master-detail relationship to its parent and to the central `Tag__c` record. The same LWC works on any of them; you tell it which junction to use via a configuration property on the App Builder page.
+SmartTags uses one junction object per taggable object: `Account_Tag__c`, `Contact_Tag__c`, `Project_Tag__c` — each with a primary master-detail relationship to its parent, and another to the central `Tag__c` record. The same LWC works on any of them; you tell it which junction object to use via a configuration property on the App Builder page.
 
 <!-- SCREENSHOT: App Builder configuration showing the Junction Object API Name property -->
 
