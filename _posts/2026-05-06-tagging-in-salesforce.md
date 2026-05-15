@@ -36,6 +36,7 @@ So I built SmartTags around a different trade-off.
 SmartTags uses one junction object per taggable object: `Account_Tag__c`, `Contact_Tag__c`, `Project_Tag__c` — each with a primary master-detail relationship to its parent, and another to the central `Tag__c` record. The same LWC works on any of them; you tell it which junction object to use via a configuration property on the App Builder page.
 
 <!-- SCREENSHOT: App Builder configuration showing the Junction Object API Name property -->
+![Smart Tags Config in App Builder](/assets/images/smart-tag-config.png)
 
 This does carry a cost: each new taggable object needs its own custom joining object and some custom fields. This does require some setup, well within the capabilities of a Salesforce Admin. In return, you get the things that follow naturally from a properly relational model:
 
@@ -46,10 +47,12 @@ This does carry a cost: each new taggable object needs its own custom joining ob
 - **Roll-up summary fields.** Want to know how many Accounts carry each tag? It's a roll-up. No Apex required.
 
 <!-- SCREENSHOT: a report showing Accounts grouped by Tag, with counts -->
+![Smart Tags List View](/assets/images/tags-list-view.png)
 
 Tags themselves carry a colour and an optional description, edited inline:
 
 <!-- SCREENSHOT: Tag Settings modal with the colour palette and description field -->
+![Smart Tags editing](/assets/images/smart-tag-modal.png)
 
 The colour and description aren't the headline; the architecture is. But they're a quality-of-life upgrade that makes tags more scannable in list views and more self-documenting over time.
 
