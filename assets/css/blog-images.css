@@ -1,0 +1,55 @@
+/* Single scaled image with optional caption */
+.scaled-image {
+  max-width: 600px;  /* Default width; override via include param */
+  margin: 1.5rem auto;
+  text-align: center;
+}
+
+.scaled-image img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+.scaled-image figcaption {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  font-style: italic;
+  color: #666;
+  text-align: center;
+}
+
+/* Side-by-side image pair */
+.side-by-side {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  margin: 1.5rem 0;
+}
+
+.side-by-side-item {
+  flex: 1;
+  min-width: 0;  /* Allows flex items to shrink below their natural width */
+}
+
+.side-by-side-item img {
+  max-width: 50%;
+  height: auto;
+  display: block;
+}
+
+.side-by-side-item figcaption {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  font-style: italic;
+  color: #666;
+  text-align: center;
+}
+
+/* On narrow screens, stack vertically */
+@media (max-width: 600px) {
+  .side-by-side {
+    flex-direction: column;
+  }
+}
