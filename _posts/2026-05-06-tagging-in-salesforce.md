@@ -9,6 +9,17 @@ tags: [salesforce, lwc, architecture, data-model]
 There's a free Salesforce Labs app called [Lightning Universal Tagging](https://appexchange.salesforce.com/appxListingDetail?listingId=a0N3A00000FR4OlUAL). If you need tags now and don't expect them to develop into something more, install it and stop reading. If you expect them to grow up; to be more like tags in something like GoHighLevel, to be reported on, automated against, governed, secured... here's an alternative.
 
 <!-- SCREENSHOT: side-by-side of LUT tags on an Account vs. SmartTags on an Account, showing the visual difference — coloured pills with descriptions vs. plain text -->
+<!--![LUT Tags](/assets/images/lut-example.png) ![Smart Tags](/assets/images/smart-tags-example.png) -->
+<figure style="display: flex; gap: 1rem; align-items: flex-start;">
+  <div style="flex: 1;">
+    <img src="/assets/images/lut-example.png" alt="Lightning Universal Tagging applied to an Account">
+    <figcaption><em>Lightning Universal Tagging: plain text labels.</em></figcaption>
+  </div>
+  <div style="flex: 1;">
+    <img src="/assets/images/smart-tags-example.png" alt="SmartTags applied to an Account">
+    <figcaption><em>SmartTags: coloured pills with descriptions.</em></figcaption>
+  </div>
+</figure>
 
 ## Why I built one anyway
 
