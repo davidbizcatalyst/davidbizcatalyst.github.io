@@ -5,6 +5,8 @@ layout: post
 tags: [salesforce, lwc, architecture, data-model]
 ---
 
+<link rel="stylesheet" href="/assets/css/blog-images.css">
+
 *One of the perennial requests that arise in requirements is the ability to "tag" records in Salesforce. The reason for the request may be familiarity ("our previous CRM let us tag records. Why does Salesforce not support that?") or function ("We need a way to tag records in order to...") and it's important to figure out where the client is coming from, as well as the likely development of their requirements in the future.*
 
 There's a free Salesforce Labs app called [Lightning Universal Tagging](https://appexchange.salesforce.com/appxListingDetail?listingId=a0N3A00000FR4OlUAL). If you need tags now and don't expect them to develop into something more, install it and stop reading. If you expect them to grow up; to be more like tags in something like GoHighLevel, to be reported on, automated against, governed, secured... here's an alternative.
