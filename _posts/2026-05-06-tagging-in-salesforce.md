@@ -91,7 +91,7 @@ Not better. Differently good.
 
 ## The repo
 
-[GitHub link goes here]. MIT licensed. Includes the Tag and junction object definitions, the controller and test class, the LWC, and an installation guide. Pull requests welcome.
+You'll find the [GitHub Repo here](https://github.com/davidbizcatalyst/smart-tags.git). MIT licensed. Includes the Tag and junction object definitions, the controller and test class, the LWC, and an installation guide. Pull requests welcome.
 
 ---
 
