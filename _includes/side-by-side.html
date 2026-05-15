@@ -1,0 +1,11 @@
+<figure class="side-by-side">
+  <div class="side-by-side-item">
+    <img src="{{ include.left_src }}" alt="{{ include.left_alt }}">
+    {% if include.left_caption %}<figcaption>{{ include.left_caption }}</figcaption>{% endif %}
+  </div>
+  <div class="side-by-side-item">
+    <img src="{{ include.right_src }}" alt="{{ include.right_alt }}">
+    {% if include.right_caption %}<figcaption>{{ include.right_caption }}</figcaption>{% endif %}
+  </div>
+</figure>
+ 

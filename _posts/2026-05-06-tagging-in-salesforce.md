@@ -4,13 +4,14 @@ date: 2026-05-06
 layout: post
 tags: [salesforce, lwc, architecture, data-model]
 ---
+
 *One of the perennial requests that arise in requirements is the ability to "tag" records in Salesforce. The reason for the request may be familiarity ("our previous CRM let us tag records. Why does Salesforce not support that?") or function ("We need a way to tag records in order to...") and it's important to figure out where the client is coming from, as well as the likely development of their requirements in the future.*
 
 There's a free Salesforce Labs app called [Lightning Universal Tagging](https://appexchange.salesforce.com/appxListingDetail?listingId=a0N3A00000FR4OlUAL). If you need tags now and don't expect them to develop into something more, install it and stop reading. If you expect them to grow up; to be more like tags in something like GoHighLevel, to be reported on, automated against, governed, secured... here's an alternative.
 
 <!-- SCREENSHOT: side-by-side of LUT tags on an Account vs. SmartTags on an Account, showing the visual difference — coloured pills with descriptions vs. plain text -->
 <!--![LUT Tags](/assets/images/lut-example.png) ![Smart Tags](/assets/images/smart-tags-example.png) -->
-<figure style="display: flex; gap: 1rem; align-items: flex-start;">
+<!--<figure style="display: flex; gap: 1rem; align-items: flex-start;">
   <div style="flex: 1;">
     <img src="/assets/images/lut-example.png" alt="Lightning Universal Tagging applied to an Account">
     <figcaption><em>Lightning Universal Tagging: plain text labels.</em></figcaption>
@@ -19,7 +20,16 @@ There's a free Salesforce Labs app called [Lightning Universal Tagging](https://
     <img src="/assets/images/smart-tags-example.png" alt="SmartTags applied to an Account">
     <figcaption><em>SmartTags: coloured pills with descriptions.</em></figcaption>
   </div>
-</figure>
+</figure> -->
+
+{% include side-by-side.html
+   left_src="/assets/images/lut-example.png"
+   left_alt="Lightning Universal Tagging applied to an Account"
+   left_caption="Lightning Universal Tagging: plain text labels."
+   right_src="/assets/images/smart-tags-example.png"
+   right_alt="SmartTags applied to an Account"
+   right_caption="SmartTags: coloured pills with descriptions." %}
+
 
 ## Why I built one anyway
 
@@ -36,7 +46,12 @@ So I built SmartTags around a different trade-off.
 SmartTags uses one junction object per taggable object: `Account_Tag__c`, `Contact_Tag__c`, `Project_Tag__c` — each with a primary master-detail relationship to its parent, and another to the central `Tag__c` record. The same LWC works on any of them; you tell it which junction object to use via a configuration property on the App Builder page.
 
 <!-- SCREENSHOT: App Builder configuration showing the Junction Object API Name property -->
-![Smart Tags Config in App Builder](/assets/images/smart-tag-config.png)
+<!-- ![Smart Tags Config in App Builder](/assets/images/smart-tag-config.png) -->
+
+{% include figure.html
+   src="/assets/images/smart-tag-config.png"
+   alt="Smart Tags LWC Config in App Builder"
+   caption="The Smart Tags LWC is configured via App Builder." %}
 
 This does carry a cost: each new taggable object needs its own custom joining object and some custom fields. This does require some setup, well within the capabilities of a Salesforce Admin. In return, you get the things that follow naturally from a properly relational model:
 
@@ -47,12 +62,20 @@ This does carry a cost: each new taggable object needs its own custom joining ob
 - **Roll-up summary fields.** Want to know how many Accounts carry each tag? It's a roll-up. No Apex required.
 
 <!-- SCREENSHOT: a report showing Accounts grouped by Tag, with counts -->
-![Smart Tags List View](/assets/images/tags-list-view.png)
+<!-- ![Smart Tags List View](/assets/images/tags-list-view.png) -->
+{% include figure.html
+   src="/assets/images/tags-list-view.png"
+   alt="Smart Tags List View"
+   caption="The Tags home tab, with list view" %}
 
 Tags themselves carry a colour and an optional description, edited inline:
 
 <!-- SCREENSHOT: Tag Settings modal with the colour palette and description field -->
-![Smart Tags editing](/assets/images/smart-tag-modal.png)
+<!-- ![Smart Tags editing](/assets/images/smart-tag-modal.png) -->
+{% include figure.html
+   src="/assets/images/smart-tag-modal.png"
+   alt="Tag Settings modal"
+   caption="The Tag Settings modal lets users pick a colour and add an optional description." %}
 
 The colour and description aren't the headline; the architecture is. But they're a quality-of-life upgrade that makes tags more scannable in list views and more self-documenting over time.
 

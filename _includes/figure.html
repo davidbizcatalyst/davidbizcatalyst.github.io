@@ -1,0 +1,5 @@
+<figure class="scaled-image" {% if include.width %}style="max-width: {{ include.width }};"{% endif %}>
+  <img src="{{ include.src }}" alt="{{ include.alt }}">
+  {% if include.caption %}<figcaption>{{ include.caption }}</figcaption>{% endif %}
+</figure>
+ 
